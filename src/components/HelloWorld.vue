@@ -20,7 +20,7 @@
     </ul>
     <h2>自定义</h2>
     <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">首页</a></li>
+      <li><router-link to="index">首页</router-link></li>
     </ul>
   </div>
 </template>
