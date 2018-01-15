@@ -14,7 +14,8 @@
   "dependencies": {
     "element-ui": "^2.0.11",
     "vue": "^2.5.2",
-    "vue-router": "^2.8.1"
+    "vue-router": "^2.8.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -39,7 +40,6 @@
     "eslint-plugin-import": "^2.7.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
-    "font-awesome": "^4.7.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",

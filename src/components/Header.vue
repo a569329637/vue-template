@@ -2,8 +2,8 @@
   <div class="layout-header">
     <el-row type="flex">
       <el-col :span="1">
-        <div class="tools">
-          <i class="fa fa-align-justify"></i>
+        <div class="tools" @click="updateNickname">
+          <i class="el el-icon-location"></i>
         </div>
       </el-col>
       <el-col :span="8" :offset="6">
@@ -27,16 +27,19 @@
 
 <script>
 export default {
-  data() {
-    return {
-      nickname: 'nickname',
-      headUrl: 'http://cdn.genefamily.com.cn/system_user.png',
-      activeMenu: '',
-      activeSubMenu: [],
-    };
+  computed: {
+    nickname() {
+      return this.$store.state.User.nickname;
+    },
+    headUrl() {
+      return this.$store.state.User.headUrl;
+    },
   },
   methods: {
     handleClick() {
+    },
+    updateNickname() {
+      this.$store.dispatch('get_nickname');
     },
   },
 };

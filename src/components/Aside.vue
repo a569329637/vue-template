@@ -3,18 +3,16 @@
     <div class="logo">广告服务</div>
     <el-menu
       unique-opened
-      default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose">
-      <div v-for="subMenu in menu">
-        <el-submenu index="user">
+      :default-active="selectMenuItemIndex"
+      class="el-menu-vertical-demo">
+      <div v-for="subMenu in menus">
+        <el-submenu :index="subMenu.index">
           <template slot="title" style="padding-left: 1px;">
-            <i class="fa fa-user"></i>
+            <i class="el-icon-menu"></i>
             <span slot="title" class="layout-text">{{subMenu.subMenuName}}</span>
           </template>
           <div v-for="item in subMenu.menuItems">
-            <el-menu-item index="list" @click="handleClick(item.linkPath)">{{item.menuItemName}}</el-menu-item>
+            <el-menu-item :index="item.index" @click="handleMenuItemClick(item)">{{item.menuItemName}}</el-menu-item>
           </div>
         </el-submenu>
       </div>
@@ -24,41 +22,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      menu: [{
-        subMenuName: '后台用户',
-        menuItems: [{
-          menuItemName: '用户列表',
-          linkPath: '/',
-        }, {
-          menuItemName: '个人中心',
-          linkPath: '/',
-        }],
-      }, {
-        subMenuName: '系统设置',
-        menuItems: [{
-          menuItemName: '参数管理',
-          linkPath: '/',
-        }, {
-          menuItemName: '兑换通知',
-          linkPath: '/',
-        }],
-      }],
-    };
+  computed: {
+    menus() {
+      return this.$store.state.Menu.menus;
+    },
+    selectMenuItemIndex() {
+      return this.$store.state.Menu.selectMenuItemIndex;
+    },
   },
   methods: {
-    handleOpen(key, keyPath) {
-      // eslint-disable-next-line
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      // eslint-disable-next-line
-      console.log(key, keyPath);
-    },
-    handleClick(item) {
-      // eslint-disable-next-line
-      console.log(item);
+    handleMenuItemClick(item) {
+      this.$store.commit('update_frameSrc', item);
+      this.$store.commit('update_selectMenuItemIndex', item);
     },
   },
 };
@@ -77,5 +52,10 @@ export default {
     color: #fff;
     background: #20a0ff;
     transition: all 0.5s ease-out;
+  }
+
+  .el-menu-vertical-demo {
+    text-align: left;
+    height: 100vh;
   }
 </style>
