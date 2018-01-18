@@ -1,14 +1,16 @@
 <template>
-  <el-row type="flex">
-    <el-col :span="3">
-      <c-aside/>
-    </el-col>
-    <el-col :span="21">
-      <c-header/>
-      <c-main/>
-      <c-footer/>
-    </el-col>
-  </el-row>
+  <div id="app">
+    <el-row type="flex">
+      <el-col :span="3">
+        <c-aside/>
+      </el-col>
+      <el-col :span="21">
+        <c-header/>
+        <c-main/>
+        <c-footer/>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
