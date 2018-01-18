@@ -7,12 +7,12 @@ const path = require('path')
 module.exports = {
   dev: {
     exportHtml: [{
-        name: 'test',
-        from: 'test',
-        title: '测试',
+        name: 'login',
+        from: 'login',
+        title: '登录',
     }, {
         name: 'index',
-        from: 'main',
+        from: 'index',
         title: '首页',
     }],
 
@@ -54,9 +54,13 @@ module.exports = {
 
   build: {
     exportHtml: [{
-      name: 'index',
-      // from: '.*',
-      title: '首页',
+        name: 'login',
+        from: 'login',
+        title: '登录',
+    }, {
+        name: 'index',
+        from: 'index',
+        title: '首页',
     }],
 
     // Template for index.html
