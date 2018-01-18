@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const customExport = require('./exportHtml.conf')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -24,9 +25,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     clientLogLevel: 'warning',
     historyApiFallback: {
-      rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
-      ],
+      rewrites: customExport.exportRewrites(),
+        // [{ from: /test/, to: path.posix.join(config.dev.assetsPublicPath, 'test.html') },{ from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },]
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
@@ -52,11 +52,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: 'index.html',
+    //   inject: true,
+    //   chunks: ['index'],
+    // }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -67,6 +68,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
+
+const htmlPlugins = customExport.exportHtmlPlugins();
+for (let i = 0; i < htmlPlugins.length; ++ i) {
+  devWebpackConfig.plugins.push(htmlPlugins[i]);
+}
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port

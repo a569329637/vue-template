@@ -18,10 +18,6 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <h2>自定义</h2>
-    <ul>
-      <li><router-link to="index">首页</router-link></li>
-    </ul>
   </div>
 </template>
 

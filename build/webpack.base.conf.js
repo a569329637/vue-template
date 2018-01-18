@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const customExport = require('./exportHtml.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -21,9 +22,7 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
-    index: './src/views/index/main.js'
-  },
+  entry: customExport.exportEntry(),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

@@ -6,6 +6,15 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    exportHtml: [{
+        name: 'test',
+        from: 'test',
+        title: '测试',
+    }, {
+        name: 'index',
+        from: 'main',
+        title: '首页',
+    }],
 
     // Paths
     assetsSubDirectory: 'static',
@@ -44,13 +53,19 @@ module.exports = {
   },
 
   build: {
+    exportHtml: [{
+      name: 'index',
+      // from: '.*',
+      title: '首页',
+    }],
+
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    // index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    // assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
